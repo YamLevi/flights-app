@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Homepage from "./components/Homepage";
+import { DataProvider } from "./ContexApi";
+import ControlPanel from "./components/ControlPanel";
+import SortPanel from "./components/SortPanel";
+import AddFlight from "./components/AddFlight";
+import RemoveFlight from "./components/RemoveFlight";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <DataProvider>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/controlpanel" element={<ControlPanel />} />
+            <Route path="/controlpanel/sort" element={<SortPanel />} />
+            <Route path="/controlpanel/addflight" element={<AddFlight />} />
+            <Route
+              path="/controlpanel/removeflight"
+              element={<RemoveFlight />}
+            />
+          </Routes>
+        </DataProvider>
+      </BrowserRouter>
     </div>
   );
 }
